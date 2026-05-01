@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gydome pasekmes, o ne priežastis — MedLaikas Blog</title>
+<meta name="description" content="Kodėl vakarietiškas gydymas kovoja su simptomais, o ne priežastimis — kinų medicinos perspektyva.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --ink: #1a1410;
+  --ink-soft: #4a3f35;
+  --ink-muted: #8a7a6a;
+  --paper: #faf7f2;
+  --paper2: #f5f0e8;
+  --accent: #c4541a;
+  --accent-light: #f5e6dc;
+  --blue: #2E7ED6;
+  --border: rgba(26,20,16,0.1);
+  --gold: #b8860b;
+}
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* NAV */
+nav {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-home {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-blog {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* HERO */
+.article-hero {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+}
+
+.article-category {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.2rem;
+}
+
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.01em;
+}
+
+.article-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.article-lead {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  font-style: italic;
+  border-left: 3px solid var(--accent);
+  padding-left: 1.2rem;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.meta-author {
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.meta-dot { opacity: 0.4; }
+
+/* AD BANNER TOP */
+.ad-banner {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.ad-medlaikas {
+  background: linear-gradient(135deg, #1a5faa 0%, #2E7ED6 100%);
+  border-radius: 12px;
+  padding: 1.4rem 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ad-text { color: white; }
+.ad-text strong { display: block; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+.ad-text span { font-size: 0.8rem; opacity: 0.8; }
+
+.ad-btn {
+  background: white;
+  color: var(--blue);
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.ad-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+/* ARTICLE BODY */
+.article-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+.article-body p {
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+}
+
+.article-body p:first-child::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 900;
+  float: left;
+  line-height: 0.85;
+  margin-right: 0.1em;
+  margin-top: 0.05em;
+  color: var(--accent);
+}
+
+/* PULLQUOTE */
+.pullquote {
+  margin: 2.5rem 0;
+  padding: 2rem 2rem 2rem 2.5rem;
+  border-left: 4px solid var(--accent);
+  background: var(--paper2);
+  border-radius: 0 8px 8px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink);
+  position: relative;
+}
+
+.pullquote::before {
+  content: '"';
+  font-size: 5rem;
+  color: var(--accent);
+  opacity: 0.2;
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-family: 'Playfair Display', serif;
+  line-height: 1;
+}
+
+/* SECTION HEADING */
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.article-body h2 .num {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  font-family: 'Source Serif 4', serif;
+  font-style: normal;
+}
+
+/* SARCASM BOX */
+.sarcasm-box {
+  background: var(--paper2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.2rem 0 1.8rem;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  position: relative;
+}
+
+.sarcasm-box::before {
+  content: 'Sarkastiška tiesa';
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  font-style: normal;
+}
+
+/* LIST */
+.article-body ul, .article-body ol {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.article-body li {
+  padding: 0.4rem 0 0.4rem 1.5rem;
+  position: relative;
+  color: var(--ink);
+}
+
+.article-body li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* SYMPTOMS LIST */
+.symptoms {
+  background: var(--paper2);
+  border-radius: 10px;
+  padding: 1.5rem 1.8rem;
+  margin: 1.5rem 0;
+}
+
+.symptoms li {
+  border-bottom: 1px solid var(--border);
+  padding: 0.7rem 0 0.7rem 1.5rem;
+}
+.symptoms li:last-child { border-bottom: none; }
+
+/* CLOSING */
+.article-closing {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+/* AD MID */
+.ad-mid {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+}
+
+.ad-mid-inner {
+  background: var(--paper2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ad-mid-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--blue);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ad-mid-text h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.ad-mid-text p {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  margin: 0;
+}
+
+.ad-mid-btn {
+  margin-left: auto;
+  background: var(--blue);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.ad-mid-btn:hover { background: #1a5faa; }
+
+/* AUTHOR BIO */
+.author-bio {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+.author-bio-inner {
+  border-top: 2px solid var(--ink);
+  padding-top: 1.5rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.author-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), #1a3d6e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: white;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.author-info h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.author-info p {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.5);
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+footer a:hover { color: white; }
+
+@media(max-width: 600px) {
+  .article-title { font-size: 2rem; }
+  .ad-medlaikas { flex-direction: column; }
+  .ad-mid-inner { flex-direction: column; }
+  .ad-mid-btn { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-home">
+    <svg width="24" height="24" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" style="border-radius:6px;flex-shrink:0">
+      <rect width="38" height="38" rx="10" fill="#2E7ED6"/>
+      <rect x="7" y="15" width="24" height="10" rx="5" fill="white" opacity="0.95"/>
+      <rect x="7" y="15" width="12" height="10" rx="5" fill="#a8cdf0"/>
+      <rect x="13" y="15" width="6" height="10" fill="#a8cdf0"/>
+      <circle cx="19" cy="20" r="6.5" fill="white" stroke="#2E7ED6" stroke-width="1.2"/>
+      <line x1="19" y1="20" x2="19" y2="16.5" stroke="#1a5faa" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="19" y1="20" x2="16.5" y2="21.5" stroke="#1a5faa" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+    MedLaikas
+  </a>
+  <span class="nav-blog">Sveikata & Išmintis</span>
+</nav>
+
+<!-- ARTICLE HERO -->
+<div class="article-hero">
+  <span class="article-category">Kinų medicina · Sveikata</span>
+  <h1 class="article-title">Gydome pasekmes,<br><em>o ne priežastis</em></h1>
+  <p class="article-lead">Kovojam su simptomais, o ne su priežastimi. Senovės kinų strategai į tokį „gydymą" žiūrėtų kaip į bandymą laimėti karą trypiant ir daužant priešo šešėlį.</p>
+  <div class="article-meta">
+    <span class="meta-author">Vaidotas Jankus</span>
+    <span class="meta-dot">·</span>
+    <span>MedLaikas kūrėjas</span>
+    <span class="meta-dot">·</span>
+    <span>2026</span>
+    <span class="meta-dot">·</span>
+    <span>5 min. skaitymas</span>
+  </div>
+</div>
+
+<!-- AD TOP -->
+<div class="ad-banner">
+  <div class="ad-medlaikas">
+    <div class="ad-text">
+      <strong>💊 MedLaikas — vaistų priminimai</strong>
+      <span>Nemokama Android programėlė · Be reklamos · Lietuviškai</span>
+    </div>
+    <a href="https://play.google.com/store/apps/details?id=com.medreminder" class="ad-btn" target="_blank">Atsisiųsti</a>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <p>Dalinantis savo projektu „MedLaikas", teko įsitraukti į krūvą savigydos ir medicininių patarimų grupių. Stebėdamas diskusijas ten, supratau vieną dalyką: mes esame tapę neįtikėtinais „pasekmių gydymo" meistrais.</p>
+
+  <p>Daug metų tyrinėju kinų kultūrą ir kuo giliau lendu į jų filosofinius miškus, tuo labiau mūsų vakarietiškas gyvenimo būdas man primena bandymą gesinti gaisrą degtine. 😄</p>
+
+  <div class="pullquote">
+    Nori numalšinti verdantį katilą? Ištrauk malkas iš po jo, užuot pylęs šaltą vandenį į vidų.
+  </div>
+
+  <p>Bet mes esame „kibirų meistrai". Pilame vandenį į verdantį katilą, stebimės, kodėl jis vėl užverda, ir piktinamės, kad vanduo buvo per mažai šaltas.</p>
+
+  <p>Strategija, kurią supranta bet kuris kinų generolas, paprasta: jei priešas puola tavo miestą, nepulk jo armijos kaktomuša. Pulti reikia tai, kas jam brangiausia kitoje vietoje — taip priversi jį atsitraukti savaime. Medicinoje tai vadinama „smūgis į šaknis", o ne bandymu nudažyti vystančius lapus žaliai.</p>
+
+  <h2><span class="num">01</span> Oda = Storasis žarnynas</h2>
+
+  <p>Bėrimai ar egzema retai yra odos problema. Oda yra tiesiog organizmo „šiukšlių išvežimo skyrius", dirbantis viršvalandžius, kai pagrindinis procesas stringa. Jei žarnynas užsikimšęs kaip magistralė penktadienio vakarą, kūnas šiukšles meta per artimiausią langą — odą.</p>
+
+  <div class="sarcasm-box">
+    Tepdami brangius kremus ant spuogų, jūs tiesiog bandote purkšti kvepalus į šiukšlių konteinerį, užuot jį ištuštinę.
+  </div>
+
+  <h2><span class="num">02</span> Akys ir sausgyslės = Kepenys</h2>
+
+  <p>Sausos akys ar ryte stingstantys sąnariai dažnai yra kepenų pagalbos šauksmas. Tradicinėje kinų medicinoje kepenys ne tik neutralizuoja abejotino skonio vakarykščius sprendimus bare, bet ir valdo sausgyslių elastingumą bei tiesiogiai „maitina" akis.</p>
+
+  <p>Geresnis sprendimas — duoti poilsio kepenims: mažinti savo tulžingą pyktį, alkoholį ir tą „nekaltą" pridėtinį cukrų.</p>
+
+  <h2><span class="num">03</span> Emocijos = Vidaus organų budeliai</h2>
+
+  <p>Aštrios emocijos — tai fiziologinis peilis organams:</p>
+
+  <ul>
+    <li>Pyktis ne tik gadina reputaciją, bet ir tiesiogiai „degina" kepenis.</li>
+    <li>Nerimas dėl rytojaus tiesiogine prasme virškina tavo blužnį ir skrandį.</li>
+    <li>Perdėtos baimės siunčia sąskaitas tavo inkstams.</li>
+  </ul>
+
+  <h2>Ką kinų medicina siūlo</h2>
+
+  <p>Užduok sau vieną klausimą: <strong>„Kada negalavimo simptomas suintensyvėja?"</strong></p>
+
+  <div class="symptoms">
+    <ul>
+      <li>Jei galvą skauda po to, kai eilinis „talentas" darbe išvedė iš pusiausvyros — tavo problema ne galvoje, o nesugebėjime valdyti kepenų energijos. (ilga istorija, kitam kartui 😉)</li>
+      <li>Jei prabundi tarp 1 ir 3 valandos nakties — kepenys bando dirbti, kol tu bandai sapnuoti (tai jų aktyvumo laikas).</li>
+      <li>Jei simptomas nuolat grįžta — tu vis dar kariauji su „armija", o jos pagrindinė bazė klesti ir siunčia naujus karius.</li>
+    </ul>
+  </div>
+
+  <p>Anot TKM (tradicinė kinų medicina), gydyti paviršių yra intelektualinės tinginystės požymis. Simptomas nėra priešas — tai tik vienintelis sąžiningas sąjungininkas-indikatorius, rodantis, kurioje vietoje sistema subyrėjo.</p>
+
+  <div class="pullquote">
+    Kaip santechnikai sako: nustok pleistrais klijuoti pramuštą vamzdį — užsuk sklendę.
+  </div>
+
+  <p>Geriau vienas tikslus smūgis į priežastį (malkų ištraukimas), nei tūkstantis pleistrų ant pasekmių, tikintis stebuklo. Tai veikia kare, tai veikia medicinoje, tai veikia gyvenime.</p>
+
+  <p class="article-closing">Gražių švenčių 💐💐💐</p>
+
+</div>
+
+<!-- AD MID -->
+<div class="ad-mid">
+  <div class="ad-mid-inner">
+    <div class="ad-mid-icon">
+      <svg width="32" height="32" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+        <rect width="38" height="38" rx="10" fill="#2E7ED6"/>
+        <rect x="7" y="15" width="24" height="10" rx="5" fill="white" opacity="0.95"/>
+        <rect x="7" y="15" width="12" height="10" rx="5" fill="#a8cdf0"/>
+        <rect x="13" y="15" width="6" height="10" fill="#a8cdf0"/>
+        <circle cx="19" cy="20" r="6.5" fill="white" stroke="#2E7ED6" stroke-width="1.2"/>
+        <line x1="19" y1="20" x2="19" y2="16.5" stroke="#1a5faa" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="19" y1="20" x2="16.5" y2="21.5" stroke="#1a5faa" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="ad-mid-text">
+      <h4>Nepamirškite vaistų laiku</h4>
+      <p>MedLaikas — nemokama vaistų priminimų programėlė. Veikia be interneto, duomenys tik jūsų telefone.</p>
+    </div>
+    <a href="https://play.google.com/store/apps/details?id=com.medreminder" class="ad-mid-btn" target="_blank">Atsisiųsti nemokamai</a>
+  </div>
+</div>
+
+<!-- AUTHOR -->
+<div class="author-bio">
+  <div class="author-bio-inner">
+    <div class="author-avatar">V</div>
+    <div class="author-info">
+      <h4>Vaidotas Jankus</h4>
+      <p>Android kūrėjas, MedLaikas autorius. Tyrinėja kinų kultūrą ir filosofiją, rašo apie sveikatą ir technologijas lietuviškai.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 <a href="index.html">MedLaikas</a> · <a href="mailto:senjoru.akademija@gmail.com">Susisiekti</a> · <a href="index.html#duk">DUK</a></p>
+</footer>
+
+</body>
+</html>
