@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sveikata & Išmintis — MedLaikas Blog</title>
+<meta name="description" content="Straipsniai apie sveikatą, kinų mediciną ir MedLaikas programėlę.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --ink: #1a1410;
+  --ink-soft: #4a3f35;
+  --ink-muted: #8a7a6a;
+  --paper: #faf7f2;
+  --paper2: #f5f0e8;
+  --accent: #c4541a;
+  --blue: #2E7ED6;
+  --border: rgba(26,20,16,0.1);
+}
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* NAV */
+nav {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-home {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-app {
+  background: var(--blue);
+  color: white;
+  padding: 0.5rem 1.1rem;
+  border-radius: 2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.nav-app:hover { background: #1a5faa; }
+
+/* HEADER */
+.blog-header {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.blog-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+}
+
+.blog-title em { font-style: italic; color: var(--accent); }
+
+.blog-sub {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* AD BANNER */
+.ad-banner {
+  max-width: 900px;
+  margin: 2rem auto 0;
+  padding: 0 2rem;
+}
+
+.ad-medlaikas {
+  background: linear-gradient(135deg, #1a5faa 0%, #2E7ED6 100%);
+  border-radius: 12px;
+  padding: 1.2rem 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ad-text { color: white; }
+.ad-text strong { display: block; font-size: 0.92rem; font-weight: 600; margin-bottom: 0.15rem; }
+.ad-text span { font-size: 0.78rem; opacity: 0.8; }
+
+.ad-btn {
+  background: white;
+  color: var(--blue);
+  padding: 0.55rem 1.1rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.ad-btn:hover { transform: translateY(-1px); }
+
+/* POSTS GRID */
+.posts-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.posts-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.post-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+  align-items: start;
+}
+
+.post-card:hover .post-title { color: var(--accent); }
+.post-card:hover .post-arrow { transform: translateX(4px); color: var(--accent); }
+
+.post-category {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.post-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+  transition: color 0.2s;
+}
+
+.post-excerpt {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 0.8rem;
+}
+
+.post-meta {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  display: flex;
+  gap: 0.8rem;
+}
+
+.post-arrow {
+  font-size: 1.2rem;
+  color: var(--ink-muted);
+  transition: all 0.2s;
+  margin-top: 0.3rem;
+}
+
+/* EMPTY STATE */
+.coming-soon {
+  padding: 3rem 0;
+  text-align: center;
+  color: var(--ink-muted);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.5);
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+footer a:hover { color: white; }
+
+@media(max-width:600px){
+  .post-card { grid-template-columns: 1fr; }
+  .post-arrow { display: none; }
+  .ad-medlaikas { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-home">
+    <svg width="24" height="24" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" style="border-radius:6px">
+      <rect width="38" height="38" rx="10" fill="#2E7ED6"/>
+      <rect x="7" y="15" width="24" height="10" rx="5" fill="white" opacity="0.95"/>
+      <rect x="7" y="15" width="12" height="10" rx="5" fill="#a8cdf0"/>
+      <rect x="13" y="15" width="6" height="10" fill="#a8cdf0"/>
+      <circle cx="19" cy="20" r="6.5" fill="white" stroke="#2E7ED6" stroke-width="1.2"/>
+      <line x1="19" y1="20" x2="19" y2="16.5" stroke="#1a5faa" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="19" y1="20" x2="16.5" y2="21.5" stroke="#1a5faa" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+    MedLaikas
+  </a>
+  <a href="https://play.google.com/store/apps/details?id=com.medreminder" class="nav-app" target="_blank">▶ Atsisiųsti</a>
+</nav>
+
+<!-- HEADER -->
+<div class="blog-header">
+  <span class="blog-tag">Blogas</span>
+  <h1 class="blog-title">Sveikata &amp; <em>Išmintis</em></h1>
+  <p class="blog-sub">Straipsniai apie sveikatą, kinų mediciną ir kasdienius sprendimus.</p>
+</div>
+
+<!-- AD -->
+<div class="ad-banner">
+  <div class="ad-medlaikas">
+    <div class="ad-text">
+      <strong>💊 MedLaikas — vaistų priminimai</strong>
+      <span>Nemokama · Be reklamos · Lietuviškai · Android</span>
+    </div>
+    <a href="https://play.google.com/store/apps/details?id=com.medreminder" class="ad-btn" target="_blank">Atsisiųsti</a>
+  </div>
+</div>
+
+<!-- POSTS -->
+<div class="posts-section">
+  <span class="posts-label">Visi straipsniai</span>
+  <div class="posts-list">
+
+    <!-- POST 1 -->
+    <a href="post-1.html" class="post-card">
+      <div>
+        <span class="post-category">Kinų medicina · Sveikata</span>
+        <div class="post-title">Gydome pasekmes, o ne priežastis</div>
+        <p class="post-excerpt">Kovojam su simptomais, o ne su priežastimi. Senovės kinų strategai į tokį „gydymą" žiūrėtų kaip į bandymą laimėti karą trypiant priešo šešėlį.</p>
+        <div class="post-meta">
+          <span>Vaidotas Jankus</span>
+          <span>·</span>
+          <span>2026</span>
+          <span>·</span>
+          <span>5 min.</span>
+        </div>
+      </div>
+      <span class="post-arrow">→</span>
+    </a>
+
+    <!-- Nauji straipsniai atsiras čia -->
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 <a href="index.html">MedLaikas</a> · <a href="mailto:senjoru.akademija@gmail.com">Susisiekti</a></p>
+</footer>
+
+</body>
+</html>
